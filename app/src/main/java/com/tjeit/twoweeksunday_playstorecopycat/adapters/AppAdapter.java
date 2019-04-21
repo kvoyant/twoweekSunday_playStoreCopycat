@@ -53,7 +53,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         }
         else {
             //설치하지 않은 경우
-            priceOrInstalledTxt.setText(String.format("%,d원",appData.price);
+            priceOrInstalledTxt.setText(String.format("%,d원",appData.price));
         }
 
 

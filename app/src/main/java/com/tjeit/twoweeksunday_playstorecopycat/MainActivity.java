@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.tjeit.twoweeksunday_playstorecopycat.adapters.AppAdapter;
 import com.tjeit.twoweeksunday_playstorecopycat.databinding.ActivityMainBinding;
 import com.tjeit.twoweeksunday_playstorecopycat.datas.App;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    AppAdapter mAppAdapter;
     List<App> appList = new ArrayList<>();
     ActivityMainBinding act;
 
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
 //        act.titleTxt.setText("제목 확인");
         fillApps();
 
-
+        mAppAdapter = new AppAdapter(MainActivity.this, appList);
+        act.appRankListView.setAdapter(mAppAdapter);
     }
 
     void fillApps() {
