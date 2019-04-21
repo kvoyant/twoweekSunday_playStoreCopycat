@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        act.titleTxt.setText("제목 확인");
         fillApps();
+
+
     }
 
     void fillApps() {
