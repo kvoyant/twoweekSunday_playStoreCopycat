@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.tjeit.twoweeksunday_playstorecopycat.R;
 import com.tjeit.twoweeksunday_playstorecopycat.datas.App;
@@ -33,7 +34,13 @@ public class AppAdapter extends ArrayAdapter<App> {
             row = inf.inflate(R.layout.app_list_item, null);
         }
 
-        
+        //각줄에 맞는 앱 데이터를 mList에서 추출
+        App appData = mList.get(position);
+
+        TextView rankAndTitleTxt = row.findViewById(R.id.rankAndTitleTxt);
+        TextView companyNameTxt = row.findViewById(R.id.companyNameTxt);
+        TextView priceOrInstalledTxt = row.findViewById(R.id.priceOrInstalledTxt);
+
 
         return row;
     }
