@@ -49,7 +49,8 @@ public class AppAdapter extends ArrayAdapter<App> {
         //만약 설치가 되었다면 ? 설치된 항목 아니면 가격 3.000 의 양식
         if(appData.isMine == true) {
             //설치된 항목 그래로 표기..
-//            priceOrInstalledTxt.setText("설치됨");
+            //재사용성을 인해 원하지 않은 데이터가 나올수 있으므로..설치된항목은 명시해야 한다.
+            priceOrInstalledTxt.setText("설치된 항목");
         }
         else {
             //설치하지 않은 경우
