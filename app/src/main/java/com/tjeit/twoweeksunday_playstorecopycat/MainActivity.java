@@ -37,7 +37,17 @@ public class MainActivity extends AppCompatActivity {
         act.okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "확인버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "확인버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+
+
+                //내용추가
+                appList.add(new App(10,"임시게임","이상",4,39000,false));
+                mAppAdapter.notifyDataSetChanged();
+                //마지막으로 이동
+                act.appRankListView.smoothScrollToPosition(appList.size()-1);
+
+
+
             }
         });
 
@@ -61,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
         act.appRankListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, String.format("%d번 줄을 오래 누름",position),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, String.format("%d번 줄을 오래 누름",position),Toast.LENGTH_SHORT).show();
+
+                appList.remove(position);//삭제
+                //리스트의 내용이 바꼈음을 어댑터에게 알려줌.
+                //어댑터가 변경내용을 감지해서 새로고침하듯이 리스트 갱신
+                mAppAdapter.notifyDataSetChanged();//삭제완료처리
+
                 return false;
             }
         });
