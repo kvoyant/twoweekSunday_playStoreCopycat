@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tjeit.twoweeksunday_playstorecopycat.R;
 import com.tjeit.twoweeksunday_playstorecopycat.datas.App;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppAdapter extends ArrayAdapter<App> {
@@ -40,6 +42,37 @@ public class AppAdapter extends ArrayAdapter<App> {
         TextView rankAndTitleTxt = row.findViewById(R.id.rankAndTitleTxt);
         TextView companyNameTxt = row.findViewById(R.id.companyNameTxt);
         TextView priceOrInstalledTxt = row.findViewById(R.id.priceOrInstalledTxt);
+
+        ImageView star1 = row.findViewById(R.id.star1);
+        ImageView star2 = row.findViewById(R.id.star2);
+        ImageView star3 = row.findViewById(R.id.star3);
+        ImageView star4 = row.findViewById(R.id.star4);
+        ImageView star5 = row.findViewById(R.id.star5);
+
+        List<ImageView> stars = new ArrayList<>();
+        stars.add(star1);
+        stars.add(star2);
+        stars.add(star3);
+        stars.add(star4);
+        stars.add(star5);
+
+        //재사용성으로 인해 모두 star_fill 데이터가 잘못나올수 있으므로 초기상태로 돌려주는 것이 필요
+        //초기화
+        for(ImageView star : stars) {
+            star.setImageResource(R.drawable.star_empty);
+        }
+
+        for(int i=0;i<appData.userRating;i++) {
+            stars.get(i).setImageResource(R.drawable.star_fill);
+        }
+
+//        if(appData.userRating == 1) {
+//            star1.setImageResource(R.drawable.star_fill);
+//            star2.setImageResource(R.drawable.star_empty);
+//            star3.setImageResource(R.drawable.star_empty);
+//            star4.setImageResource(R.drawable.star_empty);
+//            star5.setImageResource(R.drawable.star_empty);
+//        } else if(appData.userRating == 2) ..
 
         //등수와 제목을 세팅 .
         rankAndTitleTxt.setText(String.format("%d. %s",appData.rank, appData.title));
