@@ -66,6 +66,62 @@ public class AppDetailActivity extends AppCompatActivity {
             }
         });
 
+        //연습문제
+        //날짜를 누루고 선택하면 반영되게
+        act.dateTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog dpd = new DatePickerDialog(AppDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar cal = Calendar.getInstance();
+
+                        cal.set(Calendar.YEAR, year);
+                        cal.set(Calendar.MONTH, month);
+                        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                        cal.set(year,month,dayOfMonth);
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 M월 d일");
+
+                        String datestr = sdf.format(cal.getTimeInMillis());
+
+                        act.dateTxt.setText(datestr);
+                    }
+                },2019,3,27);
+
+                dpd.show();
+            }
+        });
+
+        //시간을 누르고 선택하면 반영되게 AM/PM을 오전/오후로 변경.
+        act.timeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog tpd = new TimePickerDialog(AppDetailActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        cal.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("a h시 m분", Locale.KOREA);
+
+                        String timeStr = sdf.format(cal.getTimeInMillis());
+
+                        act.timeTxt.setText(timeStr);
+
+                    }
+                }, 3, 15, true);
+
+                tpd.show();
+            }
+        });
+
+
+
+/*
         act.dateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,5 +181,6 @@ public class AppDetailActivity extends AppCompatActivity {
                 tpd.show();
             }
         });
+*/
     }
 }
