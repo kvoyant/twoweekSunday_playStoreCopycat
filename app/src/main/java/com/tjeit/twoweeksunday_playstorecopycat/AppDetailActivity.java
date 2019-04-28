@@ -130,10 +130,29 @@ public class AppDetailActivity extends AppCompatActivity {
             }
         });
 
+        act.goHomepageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.naver.com/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        // AMD에 플레이 스토어가 없으면 에러날수 있음
+        act.purchaseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("market://details?id=com.supercell.brawlstars");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
 
 
 /*
-        act.dateTxt.setOnClickListener(new View.OnClickListener() {
+       act.dateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("텍스트뷰클릭!", "실제로 동작하나?");
