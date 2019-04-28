@@ -125,7 +125,7 @@ public class AppDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Uri smsUri = Uri.parse("smsto:01012345678");
                 Intent intent = new Intent(Intent.ACTION_SENDTO, smsUri);
-                intent.putExtra("sms body","미리 작성된 메세지");
+                intent.putExtra("sms_body","미리 작성된 메세지");
                 startActivity(intent);
             }
         });
