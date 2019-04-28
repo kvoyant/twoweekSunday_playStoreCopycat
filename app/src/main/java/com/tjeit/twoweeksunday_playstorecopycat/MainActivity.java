@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Filter;
 import android.widget.Toast;
 
 import com.tjeit.twoweeksunday_playstorecopycat.adapters.AppAdapter;
@@ -98,6 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
 
                 return false;
+            }
+        });
+
+        act.filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                필터입력하는 화면을 실행
+                Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+//                startActivity(intent);//편도로 가는 방법
+                startActivityForResult(intent, 1);
+
             }
         });
     }
