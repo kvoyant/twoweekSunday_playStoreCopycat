@@ -62,6 +62,7 @@ public class AppDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Uri phoneUri = Uri.parse("tel:010-1234-5678");
                 Intent intent = new Intent(Intent.ACTION_DIAL, phoneUri);
+//                Intent intent = new Intent(Intent.ACTION_CALL, phoneUri);
                 startActivity(intent);
             }
         });
@@ -116,6 +117,16 @@ public class AppDetailActivity extends AppCompatActivity {
                 }, 3, 15, true);
 
                 tpd.show();
+            }
+        });
+
+        act.smsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri smsUri = Uri.parse("smsto:01012345678");
+                Intent intent = new Intent(Intent.ACTION_SENDTO, smsUri);
+                intent.putExtra("sms body","미리 작성된 메세지");
+                startActivity(intent);
             }
         });
 
