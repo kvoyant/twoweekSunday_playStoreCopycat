@@ -3,9 +3,11 @@ package com.tjeit.twoweeksunday_playstorecopycat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Filter;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    static int REQ_FOR_FILTER = 150;
 
     AppAdapter mAppAdapter;
     List<App> appList = new ArrayList<>();
@@ -108,10 +112,33 @@ public class MainActivity extends AppCompatActivity {
 //                필터입력하는 화면을 실행
                 Intent intent = new Intent(MainActivity.this, FilterActivity.class);
 //                startActivity(intent);//편도로 가는 방법
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, REQ_FOR_FILTER);//150 필터를 가지고 가는 요청
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("액티비티 결과", "결과가 돌아옴 !");
+        Log.d("리퀘스트코드",requestCode+"");
+        Log.d("resultCode",resultCode+"");
+
+        if(requestCode == REQ_FOR_FILTER) {////150 필터를 가지고 가는 요청인가?
+            //필터 설정하러 갔다 들어온게 맞다!
+            if(resultCode == RESULT_OK) {
+                //확인 버튼 눌린게 맞다
+//                Toast.makeText(this, "필터설정을 확인 했습니다.", Toast.LENGTH_SHORT).show();
+                int filteredRating = data.getIntExtra("최소평점", 0);
+                act.filterRatingTxt.setText(String.format("( 현재 필터 : %d )",filteredRating));
+            }
+            else {
+                //확인아니고 뒤로가기나 취소..
+                Toast.makeText(this, "필터설정을 취소했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     void fillApps() {
